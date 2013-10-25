@@ -16,7 +16,7 @@ function gps_distance(lat1, lon1, lat2, lon2)
 }
 
 document.addEventListener("deviceready", function(){
-	
+	alert("done");
 	if(navigator.network.connection.type == Connection.NONE){
 		$("#home_network_button").text('No Internet Access')
 								 .attr("data-icon", "delete")
@@ -189,3 +189,32 @@ $('#track_info').live('pageshow', function(){
    
 		
 });
+
+/****************************************************************/
+/*                        GEOLOCATION                           */
+/****************************************************************/
+function GetGeoLocation() {
+    navigator.geolocation.getCurrentPosition(GeoOnSuccess, GeoOnError);
+}
+
+// onSuccess Geolocation
+//
+function GeoOnSuccess(position) {
+    var element = document.getElementById('geolocation');
+
+    element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
+                        'Longitude: ' + position.coords.longitude + '<br />' +
+                        'Altitude: ' + position.coords.altitude + '<br />' +
+                        'Accuracy: ' + position.coords.accuracy + '<br />' +
+                        'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
+                        'Heading: ' + position.coords.heading + '<br />' +
+                        'Speed: ' + position.coords.speed + '<br />' +
+                        'Timestamp: ' + position.timestamp + '<br />';
+}
+
+// onError Callback receives a PositionError object
+//
+function GeoOnError(error) {
+    alert('code: ' + error.code + '\n' +
+          'message: ' + error.message + '\n');
+}
