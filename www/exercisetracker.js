@@ -43,6 +43,7 @@ $("#startTracking_start").live('click', function(){
         // Error
         function(error){
             console.log(error);
+
         },
         
         // Settings
